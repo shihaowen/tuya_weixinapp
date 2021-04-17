@@ -1,0 +1,90 @@
+<!--miniprogram/pages/home_center/common_panel/index.js.wxml-->
+<wxs src="./index.wxs" module="utils" />
+
+
+<!-- 在这里替换图片背景-->
+<!--image class="common-panel-backgroud" src="{{forest}}" /-->
+<!-- image class="common-panel-backgroud" src="../../../image/1.png" / --> 
+<!-- 在这里替换名称-->
+<navbar device_name="智能插座" bind:jumpTodeviceEditPage="jumpTodeviceEditPage" />
+
+<!--上面部分-->
+<!--
+<view class="common-panel-header">
+  <view class="common-panel-header-block">
+    <view class="common-panel-header-dpName">{{titleItem.name}}</view>
+    <view class="common-panel-header-dpValue">{{titleItem.value}}</view>
+    <text>当前时间：{{time}}</text> 
+    <view>{{msg}}</view>
+  </view>
+</view>
+-->
+<view class="top_col">
+  <view class="top_block">
+    <image class="top_image" src="../../../image/插座.png" > </image>
+    <!-- view class="top_connext">开/关</view -->
+  </view>
+</view>
+
+
+<!--每注意到有没有,有什么区别-->
+<block wx:if="{{isRoDpListShow}}">
+  <view class="statuslist">
+    <block wx:for="{{roDpList}}" wx:key="{{item.code}}" wx:for-item="item" wx:for-index='idx'>
+      <view class="{{utils.countDpItem(roDpListLength,idx)}}">
+        <view class="roDpItem-dpName">{{item.code}}</view>
+        <view class="roDpItem-status">{{item.value}}</view>
+      </view>
+    </block>
+  </view>
+</block>
+
+<!--下面部分：开关加滚动条-->
+<!--
+<view class="scroll-view">
+  <block wx:if="{{isRwDpListShow}}">
+    <block wx:for="{{rwDpList}}" wx:key="{{item.code}}" wx:for-item="item">
+      <block wx:if="{{item.type === 'Boolean'}}">
+        <Boolean model:isChecked="{{item.value}}" dpCode="{{item.code}}" dpName="{{item.name}}" bind:sendDp="sendDp" />
+      </block>
+      <block wx:if="{{item.type === 'Integer'}}">
+        <Integer model:value="{{item.value}}" values="{{item.values}}" dpCode="{{item.code}}" dpName="{{item.name}}"
+          bind:sendDp="sendDp" />
+      </block>
+      <block wx:if="{{item.type === 'Enum'}}">
+        <Enum model:value="{{item.value}}" values="{{item.values}}" dpCode="{{item.code}}" dpName="{{item.name}}"
+          bind:sendDp="sendDp" />
+      </block>
+    </block>
+  </block>
+</view>
+-->
+
+<view class="scroll-view">
+  <block wx:if="{{isRwDpListShow}}">
+    <block wx:for="{{rwDpList}}" wx:key="{{item.code}}" wx:for-item="item">
+      <block wx:if="{{item.type === 'Boolean'}}">
+        <Boolean model:isChecked="{{item.value}}" dpCode="{{item.code}}" dpName="{{item.name}}" bind:sendDp="sendDp" />
+      </block>
+    </block>
+  </block>
+</view>
+
+
+<button class='btn1'  style="position: relative; left: 1rpx; top: 19rpx">
+    <image class='btnImg' src='../../../image/倒计时.png'></image>
+    <view>倒计时</view>
+ </button>
+
+  <button class='btn1'  style="position: relative; left: -235rpx; top: -200rpx">
+    <image class='btnImg' src='../../../image/定时.png'></image>
+    <view>定时</view>
+ </button>
+
+ <button class='btn1'  style="position: relative; left: 241rpx; top: -418rpx">
+    <image class='btnImg' src='../../../image/用电量.png'></image>
+    <view>用电量</view>
+ </button>
+
+
+
